@@ -129,10 +129,10 @@ app.put("/team/:name",async(req,res,next)=>{
         p.isSold = true
         await p.save()
         if(!player)
-            return next(404,"Player not found")
+            return next(new ErrorHandler(404,"Player not found"))
         const newAmount = team.budget - amount
         if(newAmount < 0)
-            return next(404,"Team does not have enough budget")
+            return next(new ErrorHandler(404,`Team ${name} does not have enough budget`))
         team.budget = newAmount
         team.players.push(player)
         await team.save()
@@ -154,7 +154,7 @@ app.use("/powercard/:name",async(req,res,next)=>{
             return next(new ErrorHandler(404,"Please select a powercard"))
         const team = await Team.findOne({name,slot})
         if(!team)
-            return next(404,"Team not found")
+            return next(new ErrorHandler(404,"Team not found"))
         team.powercards.push({name:powerCard,isUsed:false})
         team.budget -= amount
         await team.save()
@@ -174,7 +174,7 @@ app.use("/penalty/:name",async(req,res,next)=>{
         const {slot,amount} = req.body
         const team = await Team.findOne({name,slot})
         if(!team)
-            return next(404,"Team not found")
+            return next(new ErrorHandler(404,"Team not found"))
         team.budget -= amount
         await team.save()
         res.status(200).json({
