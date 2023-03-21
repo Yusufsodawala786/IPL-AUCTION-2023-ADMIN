@@ -127,6 +127,7 @@ app.put("/team/:name",async(req,res,next)=>{
         const player = await Players.findOne({playerName}).select("_id")
         const p = await Players.findOne({playerName})
         p.isSold = true
+        await p.save()
         if(!player)
             return next(404,"Player not found")
         const newAmount = team.budget - amount
