@@ -132,7 +132,7 @@ app.put("/team/:name",async(req,res,next)=>{
             return next(404,"Player not found")
         const newAmount = team.budget - amount
         if(newAmount < 0)
-            return next(404,`Team ${name} does not have enough budget`)
+            return next(404,"Team does not have enough budget")
         team.budget = newAmount
         team.players.push(player)
         await team.save()
