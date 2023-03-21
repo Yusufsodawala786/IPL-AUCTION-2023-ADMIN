@@ -132,7 +132,7 @@ app.put("/team/:name",async(req,res,next)=>{
             return next(new ErrorHandler(404,"Player not found"))
         const newAmount = team.budget - amount
         if(newAmount < 0)
-            return next(new ErrorHandler(404,`Team ${name} does not have enough budget`))
+            return next(new ErrorHandler(404,"Team does not have enough budget"))
         team.budget = newAmount
         team.players.push(player)
         await team.save()
