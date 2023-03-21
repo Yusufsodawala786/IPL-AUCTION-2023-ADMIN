@@ -95,7 +95,10 @@ app.get("/players",async(req,res,next)=>{
                                     $options: 'i'
                                 }:
                                 null
-        const type = req.query.type ? req.query.type : null
+        const type = req.query.type ? {
+            $regex: req.query.type,
+            $options: 'i'
+        } : null
         if(!playerName && !type){
             players = await Players.find()
         }else if(playerName && !type){
@@ -113,7 +116,6 @@ app.get("/players",async(req,res,next)=>{
         next(new ErrorHandler())
     }
 })
-
 //Updating team details --Admin
 app.put("/team/:name",async(req,res,next)=>{
     try{
@@ -123,9 +125,11 @@ app.put("/team/:name",async(req,res,next)=>{
         if(!team)
             return next(new ErrorHandler(404,"Team not found"))
         const player = await Players.findOne({playerName}).select("_id")
+        const p = await Players.findOne({playerName})
+        p.isSold = true
         if(!player)
             return next(404,"Player not found")
-        const newAmount = team.budget - amount*10000000
+        const newAmount = team.budget - amount
         if(newAmount < 0)
             return next(404,`Team ${name} does not have enough budget`)
         team.budget = newAmount
@@ -140,6 +144,46 @@ app.put("/team/:name",async(req,res,next)=>{
     }
 })
 
+//Setting powercards
+app.use("/powercard/:name",async(req,res,next)=>{
+    try{
+        const {name} = req.params
+        const {slot,powerCard,amount} = req.body
+        if(powerCard === null)
+            return next(new ErrorHandler(404,"Please select a powercard"))
+        const team = await Team.findOne({name,slot})
+        if(!team)
+            return next(404,"Team not found")
+        team.powercards.push({name:powerCard,isUsed:false})
+        team.budget -= amount
+        await team.save()
+        res.status(200).json({
+            success:true,
+            message:"Powercard added successfully"
+        })
+    }catch(e){
+        next(new ErrorHandler())
+    }
+})
+
+//penalty
+app.use("/penalty/:name",async(req,res,next)=>{
+    try{
+        const {name} = req.params
+        const {slot,amount} = req.body
+        const team = await Team.findOne({name,slot})
+        if(!team)
+            return next(404,"Team not found")
+        team.budget -= amount
+        await team.save()
+        res.status(200).json({
+            success:true,
+            message:"Penalty given successfully"
+        })
+    }catch(e){
+        next(new ErrorHandler())
+    }
+})
 
 //Middleware for Error
 app.use(throwError)
