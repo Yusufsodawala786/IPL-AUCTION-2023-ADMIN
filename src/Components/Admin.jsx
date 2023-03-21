@@ -15,7 +15,7 @@ export default function Admin() {
       try{
         const payload = {
           playerName,
-          amount:deductedAmount,
+          amount:deductedAmount*10000000,
           slot
           }
           teamButtonRef.current.disabled = true
