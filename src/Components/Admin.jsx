@@ -64,19 +64,19 @@ export default function Admin() {
         <div className='admin-container'>
           <div>
             <label htmlFor="name">Team Name</label>
-            <input id='name' type="text" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
+            <input id='name' type="text" value={name} autocomplete="off" onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
           </div>
           <div>
             <label htmlFor="slot">Slot</label>
-            <input id='slot' type="text" value={slot} onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
+            <input id='slot' type="text" value={slot} autocomplete="off" onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
           </div>
           <div>
             <label htmlFor="amount">Amount</label>
-            <input id='amount' type="text" value={deductedAmount} onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
+            <input id='amount' type="text" value={deductedAmount} autocomplete="off" onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
           </div>
           <div>
             <label htmlFor="player-name">Player Name</label>
-            <input id='player-name' type="text" value={playerName} onChange={(e)=>{setPlayerName(e.target.value)}} placeholder='Enter player name' className='input'/>
+            <input id='player-name' type="text" value={playerName} autocomplete="off" onChange={(e)=>{setPlayerName(e.target.value)}} placeholder='Enter player name' className='input'/>
           </div>
             <button ref={teamButtonRef} className='button' onClick={handleSubmitTeam}>Submit</button>
         </div>  
@@ -84,15 +84,15 @@ export default function Admin() {
         <div className='admin-container'>
           <div>
             <label htmlFor="name">Team Name</label>
-            <input id='name' type="text" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
+            <input id='name' type="text" value={name} autocomplete="off" onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
           </div>
           <div>
             <label htmlFor="slot">Slot</label>
-            <input id='slot' type="text" value={slot} onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
+            <input id='slot' type="text" value={slot} autocomplete="off" onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
           </div>
           <div>
             <label htmlFor="amount">Amount</label>
-            <input id='amount' type="text" value={deductedAmount} onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
+            <input id='amount' type="text" autocomplete="off" value={deductedAmount} onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
           </div>
             <button ref={penaltyButtonRef} className='button' onClick={handleSubmitPenalty}>Submit</button>
         </div>  
@@ -101,15 +101,15 @@ export default function Admin() {
         <div className='admin-container'>
           <div>
             <label htmlFor="name">Team Name</label>
-            <input id='name' type="text" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
+            <input id='name' type="text" autocomplete="off" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder='Enter Team Name'  className='input' />
           </div>
           <div>
             <label htmlFor="slot">Slot</label>
-            <input id='slot' type="text" value={slot} onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
+            <input id='slot' type="text" autocomplete="off" value={slot} onChange={(e)=>{Number(setSlot(e.target.value))}} placeholder='Slot' className='input' />
           </div>
           <div>
             <label htmlFor="amount">Amount</label>
-            <input id='amount' type="text" value={deductedAmount} onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
+            <input id='amount' type="text" autocomplete="off" value={deductedAmount} onChange={(e)=>{Number(setDeductedAmount(e.target.value))}} placeholder='Enter amount (in Cr)' className='input' />
           </div>
           <div>
             <select onChange={(e)=>setPowerCard(e.target.value)}>
@@ -117,6 +117,7 @@ export default function Admin() {
               <option value="focusfire">focusfire</option>
               <option value="nxt3">nxt3</option>
               <option value="godseye">godseye</option>
+<option value="super substitution">super substitution</option>
             </select>
           </div>
             <button ref={powerCardButtonRef} className='button' onClick={handleSubmitPowerCard}>Submit</button>
