@@ -118,6 +118,7 @@ export default function Admin() {
               <option value="nxt3">nxt3</option>
               <option value="godseye">godseye</option>
 <option value="super substitution">super substitution</option>
+<option value="rtm">rtm</option>
             </select>
           </div>
             <button ref={powerCardButtonRef} className='button' onClick={handleSubmitPowerCard}>Submit</button>
