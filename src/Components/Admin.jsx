@@ -19,7 +19,7 @@ export default function Admin() {
           slot
           }
           teamButtonRef.current.disabled = true
-          const {data} = await axios.put(`https://ipl-auction-admin.onrender.com/team/${name}`,payload,{headers:{"Content-Type":"application/json"}})
+          const {data} = await axios.put(`https://ipl-auction-2023-admin.onrender.com/team/${name}`,payload,{headers:{"Content-Type":"application/json"}})
           alert(data.message)
         }catch(e){
           alert(e.response.data.message)
@@ -35,7 +35,7 @@ export default function Admin() {
               powerCard
           }
           powerCardButtonRef.current.disabled = true
-          const {data} = await axios.put(`https://ipl-auction-admin.onrender.com/powercard/${name}`,payload,{headers:{"Content-Type":"application/json"}})
+          const {data} = await axios.put(`https://ipl-auction-2023-admin.onrender.com/powercard/${name}`,payload,{headers:{"Content-Type":"application/json"}})
           alert(data.message)
         }catch(e){
           alert(e.response.data.message)
@@ -50,7 +50,7 @@ export default function Admin() {
               amount
           }
           penaltyButtonRef.current.disabled = true
-          const {data} = await axios.put(`https://ipl-auction-admin.onrender.com/penalty/${name}`,payload,{headers:{"Content-Type":"application/json"}})
+          const {data} = await axios.put(`https://ipl-auction-2023-admin.onrender.com/penalty/${name}`,payload,{headers:{"Content-Type":"application/json"}})
           alert(data.message)
       }catch(e){
           alert(e.response.data.message)
